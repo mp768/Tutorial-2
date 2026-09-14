@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cowaorls6td8s"]
+
+[ext_resource type="Texture2D" uid="uid://dd04mnnqo60ax" path="res://Assets/Sprites/BirdHero.png" id="1_3txt2"]
+[ext_resource type="Script" uid="uid://csq02h6ccov3x" path="res://Assets/Scripts/FlappyBird.cs" id="1_kgl50"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06y7y"]
+atlas = ExtResource("1_3txt2")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uosvl"]
+atlas = ExtResource("1_3txt2")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yi32"]
+atlas = ExtResource("1_3txt2")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q02sc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06y7y")
+}],
+"loop": 1,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uosvl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yi32")
+}],
+"loop": 1,
+"name": &"flappy",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q02sc"]
+size = Vector2(108, 58)
+
+[node name="FlappyBird" type="RigidBody2D" unique_id=138173672]
+script = ExtResource("1_kgl50")
+jumpForce = 325.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1891995566]
+sprite_frames = SubResource("SpriteFrames_q02sc")
+animation = &"flappy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1094680030]
+shape = SubResource("RectangleShape2D_q02sc")
