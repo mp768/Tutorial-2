@@ -76,6 +76,9 @@ position = Vector2(960, 375)
 position = Vector2(958, 452)
 playerId = 1
 
+[node name="AnimatedSprite2D" parent="FlappyBird 2" index="0" unique_id=1891995566]
+self_modulate = Color(0.8908221, 0.23609418, 0.3716731, 1)
+
 [node name="ColumnSpawner" type="Node" parent="." unique_id=1327415566]
 script = ExtResource("5_hni1o")
 
@@ -151,3 +154,5 @@ offset_transform_position = Vector2(0, -15)
 text = "Flap to Restart"
 label_settings = SubResource("LabelSettings_iusbg")
 horizontal_alignment = 1
+
+[editable path="FlappyBird 2"]
