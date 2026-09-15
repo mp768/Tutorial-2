@@ -1,13 +1,36 @@
 [gd_scene format=3 uid="uid://cidgnqavq2qdu"]
 
+[ext_resource type="Script" uid="uid://shgb6qdbw006" path="res://Assets/Scripts/Column.cs" id="1_o5onr"]
 [ext_resource type="Texture2D" uid="uid://dm4a4k0ifvm4f" path="res://Assets/Sprites/ColumnSprite.png" id="1_tiar3"]
 
-[node name="Column" type="Node2D" unique_id=933542964]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q02sc"]
+size = Vector2(82, 1020)
 
-[node name="Top Column" type="Sprite2D" parent="." unique_id=751833408]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wqye"]
+size = Vector2(66, 200)
+
+[node name="Column" type="Area2D" unique_id=333861666]
+script = ExtResource("1_o5onr")
+speed = 140.0
+
+[node name="Top Column" type="StaticBody2D" parent="." unique_id=450949494 groups=["kill_surface"]]
+position = Vector2(0, -612)
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Column" unique_id=1405078714]
 texture = ExtResource("1_tiar3")
 flip_v = true
 
-[node name="Bottom Column" type="Sprite2D" parent="." unique_id=299290930]
-position = Vector2(0, 1138)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Column" unique_id=2115691449]
+shape = SubResource("RectangleShape2D_q02sc")
+
+[node name="Bottom Column" type="StaticBody2D" parent="." unique_id=241042759 groups=["kill_surface"]]
+position = Vector2(0, 612)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Column" unique_id=870524848]
 texture = ExtResource("1_tiar3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Column" unique_id=595521437]
+shape = SubResource("RectangleShape2D_q02sc")
+
+[node name="ScoreAreaShape" type="CollisionShape2D" parent="." unique_id=323620652]
+shape = SubResource("RectangleShape2D_0wqye")

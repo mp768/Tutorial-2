@@ -1,13 +1,24 @@
 [gd_scene format=3 uid="uid://d2k7y1kr1mr5p"]
 
+[ext_resource type="Script" uid="uid://bf405wm8se3ma" path="res://Assets/Scripts/GameManager.cs" id="1_iusbg"]
 [ext_resource type="Texture2D" uid="uid://6i6cmay8ooak" path="res://Assets/Sprites/GrassThinSprite.png" id="1_nbu75"]
 [ext_resource type="Texture2D" uid="uid://c2u56bg4n0l0c" path="res://Assets/Sprites/SkyTileSprite.png" id="1_pfbgl"]
 [ext_resource type="PackedScene" uid="uid://cowaorls6td8s" path="res://Assets/Scenes/flappy_bird.tscn" id="3_lcp10"]
+[ext_resource type="Script" uid="uid://bxbw730vmrg2m" path="res://Assets/Scripts/ColumnPool.cs" id="5_hni1o"]
+[ext_resource type="FontFile" uid="uid://c7mf5c2o6bulc" path="res://Assets/Font/LuckiestGuy.ttf" id="6_iusbg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q02sc"]
 size = Vector2(2050, 246)
 
-[node name="Game" type="Node2D" unique_id=1242884102]
+[sub_resource type="LabelSettings" id="LabelSettings_q02sc"]
+font = ExtResource("6_iusbg")
+font_size = 82
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.6392157)
+
+[node name="Game" type="Node2D" unique_id=1242884102 node_paths=PackedStringArray("labelPlayer1")]
+script = ExtResource("1_iusbg")
+labelPlayer1 = NodePath("Player1Score")
 
 [node name="Sky" type="Parallax2D" parent="." unique_id=1692603811]
 modulate = Color(0.821264, 0.9026023, 1, 1)
@@ -18,11 +29,11 @@ autoscroll = Vector2(-80, 0)
 repeat_times = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=685643384]
-position = Vector2(822, 384)
+position = Vector2(1209, 384)
 texture = ExtResource("1_pfbgl")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1700860039 groups=["kill_surface"]]
-position = Vector2(720, 684)
+position = Vector2(981, 883)
 
 [node name="Parallax2D" type="Parallax2D" parent="Floor" unique_id=965372808]
 repeat_size = Vector2(500, 0)
@@ -37,4 +48,33 @@ position = Vector2(0, 134)
 shape = SubResource("RectangleShape2D_q02sc")
 
 [node name="FlappyBird" parent="." unique_id=138173672 instance=ExtResource("3_lcp10")]
-position = Vector2(720, 375)
+position = Vector2(960, 375)
+
+[node name="ColumnSpawner" type="Node" parent="." unique_id=1327415566]
+script = ExtResource("5_hni1o")
+
+[node name="StartPositionNode" type="Node2D" parent="ColumnSpawner" unique_id=440194153]
+position = Vector2(2626, 458)
+
+[node name="EndPositionNode" type="Node2D" parent="ColumnSpawner" unique_id=374026251]
+position = Vector2(-547, 458)
+
+[node name="Player1Score" type="Label" parent="." unique_id=753808451]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -41.5
+offset_right = 161.0
+offset_bottom = 41.5
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(960, 885)
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_q02sc")
+horizontal_alignment = 1
+vertical_alignment = 1

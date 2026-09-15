@@ -18,6 +18,9 @@ public partial class GameSignals : Node
     [Signal]
     public delegate void PlayerDiedEventHandler();
 
+    [Signal]
+    public delegate void PlayerScoreEventHandler(int playerId);
+
     public override void _Ready()
     {
         Instance = this;
