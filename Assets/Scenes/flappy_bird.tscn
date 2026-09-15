@@ -41,6 +41,7 @@ animations = [{
 size = Vector2(108, 58)
 
 [node name="FlappyBird" type="RigidBody2D" unique_id=138173672]
+collision_layer = 2
 continuous_cd = 2
 contact_monitor = true
 max_contacts_reported = 2

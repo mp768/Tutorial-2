@@ -21,6 +21,15 @@ public partial class GameSignals : Node
     [Signal]
     public delegate void PlayerScoreEventHandler(int playerId);
 
+    [Signal]
+    public delegate void ResetGameEventHandler();
+
+    [Signal]
+    public delegate void GameOverEventHandler();
+
+    [Signal]
+    public delegate void ResetPlayerPositionEventHandler(int playerId, Vector2 position);
+
     public override void _Ready()
     {
         Instance = this;

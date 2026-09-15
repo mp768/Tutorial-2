@@ -16,9 +16,30 @@ font_size = 82
 shadow_size = 4
 shadow_color = Color(0, 0, 0, 0.6392157)
 
-[node name="Game" type="Node2D" unique_id=1242884102 node_paths=PackedStringArray("labelPlayer1")]
+[sub_resource type="LabelSettings" id="LabelSettings_of3jj"]
+font = ExtResource("6_iusbg")
+font_size = 82
+font_color = Color(0.70132583, 0.07766282, 0.26569477, 1)
+shadow_size = 4
+shadow_color = Color(0, 0, 0, 0.6392157)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0wqye"]
+font = ExtResource("6_iusbg")
+font_size = 108
+shadow_color = Color(0, 0, 0, 0.8509804)
+shadow_offset = Vector2(1, 7.04)
+
+[sub_resource type="LabelSettings" id="LabelSettings_iusbg"]
+font = ExtResource("6_iusbg")
+font_size = 64
+shadow_color = Color(0, 0, 0, 1)
+shadow_offset = Vector2(1, 6.65)
+
+[node name="Game" type="Node2D" unique_id=1242884102 node_paths=PackedStringArray("players", "labelPlayer1", "labelPlayer2")]
 script = ExtResource("1_iusbg")
+players = [NodePath("FlappyBird"), NodePath("FlappyBird 2")]
 labelPlayer1 = NodePath("Player1Score")
+labelPlayer2 = NodePath("Player2Score")
 
 [node name="Sky" type="Parallax2D" parent="." unique_id=1692603811]
 modulate = Color(0.821264, 0.9026023, 1, 1)
@@ -33,6 +54,7 @@ position = Vector2(1209, 384)
 texture = ExtResource("1_pfbgl")
 
 [node name="Floor" type="StaticBody2D" parent="." unique_id=1700860039 groups=["kill_surface"]]
+z_index = 1
 position = Vector2(981, 883)
 
 [node name="Parallax2D" type="Parallax2D" parent="Floor" unique_id=965372808]
@@ -49,6 +71,10 @@ shape = SubResource("RectangleShape2D_q02sc")
 
 [node name="FlappyBird" parent="." unique_id=138173672 instance=ExtResource("3_lcp10")]
 position = Vector2(960, 375)
+
+[node name="FlappyBird 2" parent="." unique_id=1736025393 instance=ExtResource("3_lcp10")]
+position = Vector2(958, 452)
+playerId = 1
 
 [node name="ColumnSpawner" type="Node" parent="." unique_id=1327415566]
 script = ExtResource("5_hni1o")
@@ -67,14 +93,61 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -161.0
-offset_top = -41.5
+offset_top = -41.0
 offset_right = 161.0
-offset_bottom = 41.5
+offset_bottom = 42.0
 grow_horizontal = 2
 grow_vertical = 2
 offset_transform_enabled = true
-offset_transform_position = Vector2(960, 885)
+offset_transform_position = Vector2(960, 932)
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_q02sc")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Player2Score" type="Label" parent="." unique_id=1000452198]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -161.0
+offset_top = -41.0
+offset_right = 161.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(960, 1032)
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_of3jj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="GameOver Stuff" type="VBoxContainer" parent="." unique_id=1849257640]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 660.0
+offset_top = 75.0
+offset_right = 1260.0
+offset_bottom = 275.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOver Label" type="Label" parent="GameOver Stuff" unique_id=210024284]
+layout_mode = 2
+text = "Game Over"
+label_settings = SubResource("LabelSettings_0wqye")
+
+[node name="Flap to Restart" type="Label" parent="GameOver Stuff" unique_id=609782090]
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_position = Vector2(0, -15)
+text = "Flap to Restart"
+label_settings = SubResource("LabelSettings_iusbg")
+horizontal_alignment = 1

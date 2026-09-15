@@ -5,12 +5,14 @@ using Godot;
  */
 public partial class ColumnPool : Node
 {
-	private Node2D[] columns;
+	private Column[] columns;
 
 	private int columnCount = 0;
 
 	private Vector2 startPos;
 	private Vector2 endPos;
+
+	private Timer timer;
 
 	public override void _Ready()
 	{
@@ -26,26 +28,25 @@ public partial class ColumnPool : Node
 
 		var columnInstance = ResourceLoader.Load<PackedScene>("uid://cidgnqavq2qdu");
 
-		columns = new Node2D[Constants.MAX_COLUMNS];
+		columns = new Column[Constants.MAX_COLUMNS];
+
 		for (int i = 0; i < Constants.MAX_COLUMNS; i++)
 		{
-			var column = columnInstance.Instantiate<Node2D>();
-
-			column.ProcessMode = ProcessModeEnum.Disabled;
-			column.Visible = false;
-			column.Position = startPos;
-
-			columns[i] = column;
-			AddChild(column);
+			columns[i] = columnInstance.Instantiate<Column>();
+			AddChild(columns[i]);
 		}
 
-		var timer = new Timer();
+		timer = new Timer();
 		timer.Timeout += SpawnColumn;
 		timer.WaitTime = 3.2f;
 		timer.OneShot = false;
 		timer.Autostart = true;
 
 		AddChild(timer);
+
+		Reset();
+
+		GameSignals.Instance.ResetGame += Reset;
 	}
 
 	public override void _Process(double delta)
@@ -69,10 +70,27 @@ public partial class ColumnPool : Node
 		var column = columns[columnCount];
 		columnCount++;
 
-		column.ProcessMode = ProcessModeEnum.Pausable;
+		column.Enable();
 		column.Visible = true;
 
 		column.Position = new Vector2(startPos.X, GetRandomHeight());
+	}
+
+	private void Reset()
+	{
+		for (int i = 0; i < Constants.MAX_COLUMNS; i++)
+		{
+			var column = columns[i];
+
+			column.Visible = false;
+			column.Position = startPos;
+			column.Disable();
+		}
+
+		columnCount = 0;
+
+		// Reset the timer.
+		timer.Start();
 	}
 
 	private static float GetRandomHeight()
