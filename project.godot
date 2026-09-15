@@ -11,18 +11,28 @@ config_version=5
 [application]
 
 config/name="My-Tutorial-2"
-run/main_scene="uid://cowaorls6td8s"
+run/main_scene="uid://d2k7y1kr1mr5p"
 config/features=PackedStringArray("4.7", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameSignals="*uid://cxtt0p23e4lej"
+
 [display]
 
-window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
+window/size/viewport_width=1440
+window/size/viewport_height=810
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
 
 [dotnet]
 
 project/assembly_name="My-Tutorial-2"
+
+[global_group]
+
+kill_surface=""
 
 [input]
 

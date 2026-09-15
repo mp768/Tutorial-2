@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://d2k7y1kr1mr5p"]
+
+[ext_resource type="Texture2D" uid="uid://6i6cmay8ooak" path="res://Assets/Sprites/GrassThinSprite.png" id="1_nbu75"]
+[ext_resource type="Texture2D" uid="uid://c2u56bg4n0l0c" path="res://Assets/Sprites/SkyTileSprite.png" id="1_pfbgl"]
+[ext_resource type="PackedScene" uid="uid://cowaorls6td8s" path="res://Assets/Scenes/flappy_bird.tscn" id="3_lcp10"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q02sc"]
+size = Vector2(2050, 246)
+
+[node name="Game" type="Node2D" unique_id=1242884102]
+
+[node name="Sky" type="Parallax2D" parent="." unique_id=1692603811]
+modulate = Color(0.821264, 0.9026023, 1, 1)
+scroll_scale = Vector2(1.73, 1.73)
+scroll_offset = Vector2(0, 81)
+repeat_size = Vector2(2048, 0)
+autoscroll = Vector2(-80, 0)
+repeat_times = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky" unique_id=685643384]
+position = Vector2(822, 384)
+texture = ExtResource("1_pfbgl")
+
+[node name="Floor" type="StaticBody2D" parent="." unique_id=1700860039 groups=["kill_surface"]]
+position = Vector2(720, 684)
+
+[node name="Parallax2D" type="Parallax2D" parent="Floor" unique_id=965372808]
+repeat_size = Vector2(500, 0)
+autoscroll = Vector2(-100, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Floor/Parallax2D" unique_id=328100901]
+texture = ExtResource("1_nbu75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor" unique_id=238304867]
+position = Vector2(0, 134)
+shape = SubResource("RectangleShape2D_q02sc")
+
+[node name="FlappyBird" parent="." unique_id=138173672 instance=ExtResource("3_lcp10")]
+position = Vector2(720, 375)

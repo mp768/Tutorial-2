@@ -41,6 +41,9 @@ animations = [{
 size = Vector2(108, 58)
 
 [node name="FlappyBird" type="RigidBody2D" unique_id=138173672]
+continuous_cd = 2
+contact_monitor = true
+max_contacts_reported = 2
 script = ExtResource("1_kgl50")
 jumpForce = 325.0
 

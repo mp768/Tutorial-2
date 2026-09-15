@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://cidgnqavq2qdu"]
+
+[ext_resource type="Texture2D" uid="uid://dm4a4k0ifvm4f" path="res://Assets/Sprites/ColumnSprite.png" id="1_tiar3"]
+
+[node name="Column" type="Node2D" unique_id=933542964]
+
+[node name="Top Column" type="Sprite2D" parent="." unique_id=751833408]
+texture = ExtResource("1_tiar3")
+flip_v = true
+
+[node name="Bottom Column" type="Sprite2D" parent="." unique_id=299290930]
+position = Vector2(0, 1138)
+texture = ExtResource("1_tiar3")
